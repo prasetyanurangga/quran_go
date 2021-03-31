@@ -1,1 +1,1 @@
-# quran_go
+# Quran Go
