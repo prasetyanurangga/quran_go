@@ -1,0 +1,444 @@
+basePath: /
+definitions:
+  config.JSONErrorResult:
+    properties:
+      count:
+        example: 0
+        type: integer
+      success:
+        example: false
+        type: boolean
+    type: object
+  config.JSONSuccessResult:
+    properties:
+      count:
+        example: 12
+        type: integer
+      data:
+        type: object
+      success:
+        example: true
+        type: boolean
+    type: object
+  model.Ayah:
+    properties:
+      arabText:
+        type: string
+      audio_1:
+        type: string
+      audio_2:
+        type: string
+      audio_3:
+        type: string
+      enText:
+        type: string
+      hizbQuarter:
+        type: integer
+      idAyahInQuran:
+        type: integer
+      idAyahInSurah:
+        type: integer
+      idSurah:
+        type: integer
+      indoText:
+        type: string
+      juz:
+        type: integer
+      manzil:
+        type: integer
+      page:
+        type: integer
+      ruku:
+        type: integer
+      sajda_obligatory:
+        type: boolean
+      sajda_recommended:
+        type: boolean
+      tafsirLong:
+        type: string
+      tafsirShort:
+        type: string
+      transliterationEn:
+        type: string
+    type: object
+  model.Surah:
+    properties:
+      ayah:
+        items:
+          $ref: '#/definitions/model.Ayah'
+        type: array
+      idSurah:
+        type: integer
+      nameLong:
+        type: string
+      nameShort:
+        type: string
+      nameTranslationEn:
+        type: string
+      nameTranslationId:
+        type: string
+      nameTransliterationEn:
+        type: string
+      nameTransliterationId:
+        type: string
+      numberOfAyah:
+        type: integer
+      revelationArab:
+        type: string
+      revelationEn:
+        type: string
+      revelationId:
+        type: string
+      tafsir:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: angganurprasetya4@gmail.com
+    name: API Support
+  description: This is quran rest api
+  title: Quran Go
+  version: "1.0"
+paths:
+  /ayah/get_by_id_ayah/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Ayah By Id Ayah
+      operationId: get-ayah-by-id-ayah
+      parameters:
+      - description: IdAyah
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.Ayah'
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Ayah By Id Ayah
+      tags:
+      - Ayah
+  /ayah/get_by_id_surah/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Ayah By Id Surah
+      operationId: get-ayah-by-id-surah
+      parameters:
+      - description: IdSurah
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/model.Ayah'
+                  type: array
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Ayah By Id Surah
+      tags:
+      - Ayah
+  /ayah/get_by_juz/{juz}:
+    get:
+      consumes:
+      - application/json
+      description: Get Ayah By Juz
+      operationId: get-ayah-by-juz
+      parameters:
+      - description: Juz
+        in: path
+        name: juz
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/model.Ayah'
+                  type: array
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Ayah By Juz
+      tags:
+      - Ayah
+  /ayah/search/{keyword}:
+    get:
+      consumes:
+      - application/json
+      description: Search Ayah
+      operationId: search-ayah
+      parameters:
+      - description: Keyword
+        in: path
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/model.Ayah'
+                  type: array
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Search Ayah
+      tags:
+      - Ayah
+  /surah/get_all/:
+    get:
+      consumes:
+      - application/json
+      description: Get All Surah
+      operationId: get-all-surah
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/model.Surah'
+                  type: array
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get All Surah
+      tags:
+      - Surah
+  /surah/get_by_id/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Surah By Id Surah
+      operationId: get-surah-by-id-surah
+      parameters:
+      - description: Id Surah
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.Surah'
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Surah By Id Surah
+      tags:
+      - Surah
+  /surah/get_by_id_with_ayah/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Surah By Id Surah With Ayah
+      operationId: get-surah-by-id-surah-with-ayah
+      parameters:
+      - description: Id Surah
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.Surah'
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Surah By Id Surah With Ayah
+      tags:
+      - Surah
+  /surah/search/{keyword}:
+    get:
+      consumes:
+      - application/json
+      description: Get Search Surah
+      operationId: search-surah
+      parameters:
+      - description: Keyword
+        in: path
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONSuccessResult'
+            - properties:
+                count:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/model.Surah'
+                  type: array
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/config.JSONErrorResult'
+            - properties:
+                count:
+                  type: integer
+                success:
+                  type: boolean
+              type: object
+      summary: Get Search Surah
+      tags:
+      - Surah
+swagger: "2.0"
