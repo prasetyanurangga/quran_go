@@ -14,7 +14,7 @@ import (
 // @title Quran Go
 // @description This is quran rest api
 // @version 1.0
-// @host localhost:8080
+// @host quran-go.herokuapp.com
 // @BasePath /
 // @contact.name API Support
 // @contact.email angganurprasetya4@gmail.com

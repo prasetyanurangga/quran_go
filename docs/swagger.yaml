@@ -92,7 +92,7 @@ definitions:
       tafsir:
         type: string
     type: object
-host: localhost:8080
+host: quran-go.herokuapp.com
 info:
   contact:
     email: angganurprasetya4@gmail.com

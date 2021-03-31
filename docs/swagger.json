@@ -9,7 +9,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "quran-go.herokuapp.com",
     "basePath": "/",
     "paths": {
         "/ayah/get_by_id_ayah/{id}": {
