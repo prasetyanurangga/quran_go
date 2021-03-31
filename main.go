@@ -35,7 +35,7 @@ func main() {
 	{
 		ayah.GET("get_by_id_surah/:id", controller.GetAyahByIdSurah)
 		ayah.GET("get_by_juz/:juz", controller.GetAyahByJuz)
-		ayah.GET("get_by_id_ayah:id", controller.GetAyahByIdAyah)
+		ayah.GET("get_by_id_ayah/:id", controller.GetAyahByIdAyah)
 		ayah.GET("search/:keyword", controller.SearchAyah)
 	}
 
